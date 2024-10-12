@@ -18,12 +18,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\fs_icon_0.png" />
-	  <None Remove="Resources\fs_icon_1.png" />
-	  <None Remove="Resources\fs_icon_2.png" />
-	  <None Remove="Resources\fs_icon_3.png" />
-	  <None Remove="Resources\s_2_pre_locate.png" />
-	  <None Remove="Resources\s_2_pre_locate_ov.png" />
+		<None Remove="Resources\fs_icon_0.png" />
+		<None Remove="Resources\fs_icon_1.png" />
+		<None Remove="Resources\fs_icon_2.png" />
+		<None Remove="Resources\fs_icon_3.png" />
+		<None Remove="Resources\s_2_pre_locate.png" />
+		<None Remove="Resources\s_2_pre_locate_ov.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -36,12 +36,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Resource Include="Resources\fs_icon_0.png" />
-	  <Resource Include="Resources\fs_icon_1.png" />
-	  <Resource Include="Resources\fs_icon_2.png" />
-	  <Resource Include="Resources\fs_icon_3.png" />
-	  <Resource Include="Resources\s_2_pre_locate.png" />
-	  <Resource Include="Resources\s_2_pre_locate_ov.png" />
+		<Resource Include="Resources\fs_icon_0.png" />
+		<Resource Include="Resources\fs_icon_1.png" />
+		<Resource Include="Resources\fs_icon_2.png" />
+		<Resource Include="Resources\fs_icon_3.png" />
+		<Resource Include="Resources\s_2_pre_locate.png" />
+		<Resource Include="Resources\s_2_pre_locate_ov.png" />
 	</ItemGroup>
 
 	<ItemGroup>
