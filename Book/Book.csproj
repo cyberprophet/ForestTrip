@@ -18,6 +18,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\fs_icon_0.png" />
+	  <None Remove="Resources\fs_icon_1.png" />
+	  <None Remove="Resources\fs_icon_2.png" />
+	  <None Remove="Resources\fs_icon_3.png" />
+	  <None Remove="Resources\s_2_pre_locate.png" />
+	  <None Remove="Resources\s_2_pre_locate_ov.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Content Include="eco_s_3_groo.ico" />
 	</ItemGroup>
 
@@ -27,18 +36,27 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Properties\Resources.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Resources.resx</DependentUpon>
-	  </Compile>
+	  <Resource Include="Resources\fs_icon_0.png" />
+	  <Resource Include="Resources\fs_icon_1.png" />
+	  <Resource Include="Resources\fs_icon_2.png" />
+	  <Resource Include="Resources\fs_icon_3.png" />
+	  <Resource Include="Resources\s_2_pre_locate.png" />
+	  <Resource Include="Resources\s_2_pre_locate_ov.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Properties\Resources.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 
 </Project>

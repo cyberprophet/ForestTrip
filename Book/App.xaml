@@ -27,6 +27,22 @@
 
         </Style>
 
+        <DataTemplate x:Key="LocItem">
+
+            <StackPanel x:Name="LocPanel" Margin="8" Orientation="Horizontal">
+                <Image x:Name="LocImg" Source="Resources/s_2_pre_locate.png" Width="24" Height="24" />
+                <TextBlock Text="{Binding}" Margin="8,0,0,0" FontWeight="Bold" FontSize="16" />
+            </StackPanel>
+
+            <DataTemplate.Triggers>
+                <Trigger SourceName="LocPanel" Property="IsMouseOver" Value="True">
+                    <Setter TargetName="LocImg" Property="Source" Value="Resources/s_2_pre_locate_ov.png" />
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </DataTemplate.Triggers>
+
+        </DataTemplate>
+
     </Application.Resources>
 
 </Application>

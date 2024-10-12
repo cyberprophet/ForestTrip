@@ -2,6 +2,8 @@
 
 using Newtonsoft.Json;
 
+using ShareInvest.Models;
+
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -10,6 +12,8 @@ namespace ShareInvest;
 
 class CoreWebView
 {
+    public event EventHandler<LocItem>? Send;
+
     internal async Task OnInitializedAsync(string? uriString = null)
     {
         if (webView.Source != null)
@@ -84,9 +88,8 @@ class CoreWebView
 
         webView.CoreWebView2.WebResourceResponseReceived += async (sender, args) =>
         {
-            if (200 == args.Response.StatusCode && args.Request.Headers.Any() && JsonConvert.DeserializeObject(await webView.ExecuteScriptAsync(Properties.Resources.HTML)) is string html)
+            if (200 == args.Response.StatusCode && args.Request.Headers.Any())
             {
-#if DEBUG
                 var name = $"{Guid.NewGuid()}";
 
                 try
@@ -109,11 +112,37 @@ class CoreWebView
                     }
                 }
 
-                using (var sw = new StreamWriter(Path.Combine(Properties.Resources.TAG, $"{name}.html")))
+                if (JsonConvert.DeserializeObject(await webView.ExecuteScriptAsync(Properties.Resources.HTML)) is string html)
                 {
-                    sw.WriteLine(html);
-                }
+#if DEBUG
+                    using (var sw = new StreamWriter(Path.Combine(Properties.Resources.TAG, $"{name}.html")))
+                    {
+                        sw.WriteLine(html);
+                    }
 #endif
+                }
+
+                if ("main-do".Equals(name))
+                {
+                    var tag = await webView.ExecuteScriptAsync(@"var elements = document.querySelectorAll('.s_3_a_map a');var result = [];elements.forEach(function(element) {result.push(element.innerText);});JSON.stringify(result);");
+
+                    if (string.IsNullOrEmpty(tag) || "\"[]\"".Equals(tag))
+                    {
+                        return;
+                    }
+                    tag = tag.Replace("\\n", "\n").Replace("\\", string.Empty).Replace("\n", string.Empty).Trim('"');
+
+                    foreach (var text in JsonConvert.DeserializeObject<List<string>>(tag) ?? [])
+                    {
+                        var strArr = text.Split('(');
+
+                        Send?.Invoke(this, new LocItem
+                        {
+                            LocName = strArr[0],
+                            Count = Convert.ToInt32(strArr[1][..^1])
+                        });
+                    }
+                }
             }
 #if DEBUG
             WriteLine(sender, nameof(webView.CoreWebView2.WebResourceResponseReceived), args);
