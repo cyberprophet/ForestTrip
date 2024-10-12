@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<SupportedOSPlatformVersion>8.0</SupportedOSPlatformVersion>
+		<AssemblyName>ForestTrip</AssemblyName>
+		<RootNamespace>ShareInvest</RootNamespace>
+		<ApplicationIcon>eco_s_3_groo.ico</ApplicationIcon>
+		<Authors>cyberprophet</Authors>
+		<Company>Share Corp.</Company>
+		<Copyright>Copyright ⓒ 2024, ShareInvest Corp.</Copyright>
+		<PackageProjectUrl>https://github.com/book-using-macro</PackageProjectUrl>
+		<Version>1.0.0.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="eco_s_3_groo.ico" />
+	</ItemGroup>
+
+</Project>
