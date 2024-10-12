@@ -14,6 +14,146 @@
 
         <DockPanel>
 
+            <Border Height="64" CornerRadius="12" Background="#22AA86" Margin="8" Padding="4" DockPanel.Dock="Bottom">
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                    <ComboBox x:Name="loc" Width="192" Margin="8,4" Padding="4">
+
+                        <ComboBox.Template>
+                            <ControlTemplate TargetType="ComboBox">
+
+                                <Border CornerRadius="16" BorderThickness="2" Background="WhiteSmoke">
+                                    <Grid>
+
+                                        <ToggleButton IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=ComboBox}}">
+
+                                            <ToggleButton.Style>
+                                                <Style TargetType="ToggleButton">
+                                                    <Setter Property="Background" Value="Transparent" />
+                                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                                    <Setter Property="BorderThickness" Value="0" />
+
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Cursor" Value="Hand" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </ToggleButton.Style>
+
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <Image Source="Resources/fs_icon_0.png" Width="24" Height="24" />
+                                                <TextBlock Text="{Binding SelectedItem.Content, RelativeSource={RelativeSource AncestorType=ComboBox}, FallbackValue='지역'}"
+                                                           Margin="8,0,0,0" 
+                                                           FontWeight="Bold"
+                                                           FontSize="16">
+                                                </TextBlock>
+                                            </StackPanel>
+
+                                        </ToggleButton>
+
+                                        <Popup x:Name="Popup"                                               
+                                               AllowsTransparency="True"                                               
+                                               Placement="Top"
+                                               PopupAnimation="Slide"                                               
+                                               Width="192"
+                                               IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=ComboBox}}">
+                                            <Border x:Name="DropDownBorder"
+                                                    CornerRadius="12,12,0,0"
+                                                    Background="WhiteSmoke"                                                    
+                                                    Margin="2">
+                                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                </ScrollViewer>
+                                            </Border>
+                                        </Popup>
+
+                                    </Grid>
+                                </Border>
+
+                            </ControlTemplate>
+
+                        </ComboBox.Template>
+
+                    </ComboBox>
+
+                    <Button Width="384" Margin="8,4" Padding="4">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="16" BorderBrush="Transparent" BorderThickness="2" Background="WhiteSmoke">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="Resources/fs_icon_1.png" Width="24" Height="24" />
+                                        <TextBlock Text="전체" Margin="8,0,0,0" FontWeight="Bold" FontSize="16" />
+                                    </StackPanel>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Cursor" Value="Hand" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Width="256" Margin="8,4" Padding="4">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="16" BorderBrush="Transparent" BorderThickness="2" Background="WhiteSmoke">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="Resources/fs_icon_2.png" Width="24" Height="24" />
+                                        <TextBlock Text="날짜선택" Margin="8,0,0,0" FontWeight="Bold" FontSize="16" />
+                                    </StackPanel>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Cursor" Value="Hand" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Border CornerRadius="16" Width="296" BorderBrush="Transparent" BorderThickness="2" Background="WhiteSmoke" Margin="8,4">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8,4">
+                            <Image Source="Resources/fs_icon_3.png" Width="24" Height="24" />
+                            <TextBlock Text="인원" FontWeight="Bold" FontSize="16" Margin="8,0" />
+                            <Button Width="24" Height="24" Margin="4,0" Click="OnDecreaseClick">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="32" BorderBrush="Transparent" Background="DimGray">
+                                            <TextBlock Text="－" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" Foreground="GhostWhite" />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Cursor" Value="Hand" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <TextBlock x:Name="np" Text="2" FontSize="16" Margin="8,0" />
+                            <Button Width="24" Height="24" Margin="4,0" Click="OnIncreaseClick">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="32" BorderBrush="Transparent" Background="DimGray">
+                                            <TextBlock Text="＋" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" Foreground="GhostWhite" />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Cursor" Value="Hand" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+
+            </Border>
+
             <wv2:WebView2 Name="webView2" />
 
         </DockPanel>

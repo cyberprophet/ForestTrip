@@ -123,4 +123,23 @@
   <data name="TAG" xml:space="preserve">
     <value>E:\Tag</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="MAP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fs_icon_0.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="HOME" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fs_icon_1.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DATE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fs_icon_2.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PEOPLE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fs_icon_3.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LOC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\s_2_pre_locate.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LOV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\s_2_pre_locate_ov.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

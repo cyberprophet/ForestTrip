@@ -61,11 +61,71 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] DATE {
+            get {
+                object obj = ResourceManager.GetObject("DATE", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] HOME {
+            get {
+                object obj = ResourceManager.GetObject("HOME", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   document.documentElement.outerHTML과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string HTML {
             get {
                 return ResourceManager.GetString("HTML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] LOC {
+            get {
+                object obj = ResourceManager.GetObject("LOC", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] LOV {
+            get {
+                object obj = ResourceManager.GetObject("LOV", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] MAP {
+            get {
+                object obj = ResourceManager.GetObject("MAP", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static byte[] PEOPLE {
+            get {
+                object obj = ResourceManager.GetObject("PEOPLE", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
