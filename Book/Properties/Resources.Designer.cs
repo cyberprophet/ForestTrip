@@ -81,6 +81,15 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
+        ///   https://www.foresttrip.go.kr/main.do과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string DOMAIN {
+            get {
+                return ResourceManager.GetString("DOMAIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static byte[] HOME {
@@ -172,6 +181,15 @@ namespace ShareInvest.Properties {
         internal static string TAG {
             get {
                 return ResourceManager.GetString("TAG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string USERAGENT {
+            get {
+                return ResourceManager.GetString("USERAGENT", resourceCulture);
             }
         }
     }
