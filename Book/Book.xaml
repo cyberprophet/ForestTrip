@@ -86,7 +86,7 @@
                                 <Border CornerRadius="16" BorderBrush="Transparent" BorderThickness="2" Background="WhiteSmoke">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <Image Source="Resources/fs_icon_1.png" Width="24" Height="24" />
-                                        <TextBlock Text="{Binding SelectedHouse.Name, FallbackValue='전체'}" Margin="8,0,0,0" FontWeight="Bold" FontSize="16" />
+                                        <TextBlock Text="{Binding House.SelectedHouse.Name, FallbackValue='전체'}" Margin="8,0,0,0" FontWeight="Bold" FontSize="16" />
                                     </StackPanel>
                                 </Border>
 
@@ -107,7 +107,7 @@
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <Image Source="Resources/fs_icon_2.png" Width="24" Height="24" />
 
-                                            <TextBlock Text="{Binding SelectedDateRange, FallbackValue='날짜선택'}"
+                                            <TextBlock Text="{Binding DateRange.SelectedDateRange, FallbackValue='날짜선택'}"
                                                        Margin="8,0,0,0"
                                                        FontWeight="Bold"
                                                        FontSize="16" />
@@ -153,9 +153,9 @@
                     <Border CornerRadius="16" Width="256" BorderBrush="Transparent" BorderThickness="2" Background="WhiteSmoke" Margin="8,4">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8,4">
                             <Image Source="Resources/fs_icon_3.png" Width="24" Height="24" />
-                            
+
                             <TextBlock Text="인원" FontWeight="Bold" FontSize="16" Margin="8,0" />
-                            
+
                             <Button Width="24" Height="24" Margin="4,0" Click="OnDecreaseClick">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
@@ -170,15 +170,16 @@
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
-                            
+
                             <TextBlock x:Name="np" Text="2" FontSize="16" Margin="8,0" />
-                            
+
                             <Button Width="24" Height="24" Margin="4,0" Click="OnIncreaseClick">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
                                         <Border CornerRadius="32" BorderBrush="Transparent" Background="DimGray">
                                             <TextBlock Text="＋" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" Foreground="GhostWhite" />
                                         </Border>
+
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
                                                 <Setter Property="Cursor" Value="Hand" />
@@ -189,6 +190,27 @@
                             </Button>
                         </StackPanel>
                     </Border>
+
+                    <Button Width="48" Height="48" Margin="8,4" Click="OnClick">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="32" Background="#294A8C">
+                                    <TextBlock Text="저장"
+                                               Foreground="GhostWhite"
+                                               FontWeight="Bold"
+                                               FontSize="14"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Cursor" Value="Hand" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
                 </StackPanel>
 

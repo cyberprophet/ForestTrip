@@ -4,6 +4,9 @@ using ShareInvest.ViewModels;
 
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
+using System.Media;
+using System.Runtime.Versioning;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -66,9 +69,13 @@ public partial class Book : Window
 
                 if (page != null && page.ShowDialog() is bool result && result)
                 {
-                    DataContext = new HouseViewModel
+                    DataContext = new BookViewModel
                     {
-                        SelectedHouse = page.SelectedHouse
+                        House = new HouseViewModel
+                        {
+                            SelectedHouse = page.SelectedHouse
+                        },
+                        DateRange = (DataContext as BookViewModel)?.DateRange
                     };
                 }
             }
@@ -80,6 +87,21 @@ public partial class Book : Window
         if (sender is DatePicker dp && dp.Template.FindName("sc", dp) is Popup p)
         {
             p.IsOpen = p.IsOpen is false;
+        }
+    }
+
+    [SupportedOSPlatform("windows")]
+    void OnClick(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is BookViewModel vm && vm.DateRange != null && vm.House != null)
+        {
+            using (MemoryStream ms = new(Properties.Resources.BINGO))
+            {
+                using (SoundPlayer sp = new(ms))
+                {
+                    sp.PlaySync();
+                }
+            }
         }
     }
 
@@ -110,10 +132,19 @@ public partial class Book : Window
                 default:
                     return;
             }
-            DataContext = new DateRangeViewModel
+
+            if (calendar.Parent is Border b && b.Parent is Popup p)
             {
-                StartDate = startDate,
-                EndDate = endDate
+                p.IsOpen = false;
+            }
+            DataContext = new BookViewModel
+            {
+                DateRange = new DateRangeViewModel
+                {
+                    StartDate = startDate,
+                    EndDate = endDate
+                },
+                House = (DataContext as BookViewModel)?.House
             };
         }
     }

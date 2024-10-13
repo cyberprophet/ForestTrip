@@ -63,6 +63,16 @@ namespace ShareInvest.Properties {
         /// <summary>
         ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static byte[] BINGO {
+            get {
+                object obj = ResourceManager.GetObject("BINGO", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static byte[] DATE {
             get {
                 object obj = ResourceManager.GetObject("DATE", resourceCulture);
