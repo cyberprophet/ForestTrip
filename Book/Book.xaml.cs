@@ -1,4 +1,9 @@
-﻿using System.Diagnostics;
+﻿using ShareInvest.EventHandler;
+using ShareInvest.Models;
+using ShareInvest.ViewModels;
+
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,17 +21,56 @@ public partial class Book : Window
 
         webView.Send += (sender, e) =>
         {
-            if (!loc.Items.Cast<ComboBoxItem>().Any(item => e.LocName.Equals(item.Content.ToString())))
+            switch (e)
             {
-                loc.Items.Add(new ComboBoxItem
-                {
-                    Content = e.LocName,
-                    TabIndex = e.Count,
-                    ContentTemplate = (DataTemplate)FindResource("LocItem")
-                });
+                case HouseArgs h when houses.TryGetValue(h.Item.Region, out List<HouseItem>? list):
+
+                    if (!string.IsNullOrEmpty(h.Item.Id) && !list.Any(e => h.Item.Id.Equals(e.Id)))
+                    {
+                        list.Add(h.Item);
+                    }
+                    return;
+
+                case LocationArgs l when !loc.Items.Cast<ComboBoxItem>().Any(item => l.Item.LocName.Equals(item.Content.ToString())):
+                    loc.Items.Add(new ComboBoxItem
+                    {
+                        Content = l.Item.LocName,
+                        TabIndex = l.Item.Count,
+                        ContentTemplate = (DataTemplate)FindResource("LocItem")
+                    });
+
+                    if (houses.ContainsKey(l.Item.LocName) is false)
+                    {
+                        houses[l.Item.LocName] = [];
+                    }
+                    return;
             }
         };
         _ = webView.OnInitializedAsync("https://www.foresttrip.go.kr/main.do");
+    }
+
+    void OnRegionHouseClick(object sender, RoutedEventArgs e)
+    {
+        if (loc.SelectedIndex >= 0)
+        {
+            var key = (loc.SelectedValue as ComboBoxItem)?.Content.ToString();
+
+            if (!string.IsNullOrEmpty(key) && houses.TryGetValue(key, out List<HouseItem>? items) && items.Count > 0)
+            {
+                var page = new RegionHouse(items)
+                {
+                    Owner = this
+                };
+
+                if (page != null && page.ShowDialog() is bool result && result)
+                {
+                    DataContext = new HouseViewModel
+                    {
+                        SelectedHouse = page.SelectedHouse
+                    };
+                }
+            }
+        }
     }
 
     void OnIncreaseClick(object _, RoutedEventArgs e)
@@ -54,6 +98,11 @@ public partial class Book : Window
 #endif
     }
 
+    void OnClosing(object _, CancelEventArgs e)
+    {
+        GC.Collect();
+    }
+
     int NumberOfPeople
     {
         get; set;
@@ -61,4 +110,6 @@ public partial class Book : Window
         = 4;
 
     readonly CoreWebView webView;
+
+    readonly Dictionary<string, List<HouseItem>> houses = [];
 }

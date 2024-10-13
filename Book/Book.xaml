@@ -6,7 +6,9 @@
         xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True}"
+        WindowStartupLocation="CenterScreen"
         StateChanged="OnStateChanged"
+        Closing="OnClosing"
         Style="{StaticResource app}"
         Title="자연휴양림">
 
@@ -78,13 +80,13 @@
 
                     </ComboBox>
 
-                    <Button Width="384" Margin="8,4" Padding="4">
+                    <Button Width="320" Margin="8,4" Padding="4" Click="OnRegionHouseClick">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="16" BorderBrush="Transparent" BorderThickness="2" Background="WhiteSmoke">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <Image Source="Resources/fs_icon_1.png" Width="24" Height="24" />
-                                        <TextBlock Text="전체" Margin="8,0,0,0" FontWeight="Bold" FontSize="16" />
+                                        <TextBlock Text="{Binding SelectedHouse.Name, FallbackValue='전체'}" Margin="8,0,0,0" FontWeight="Bold" FontSize="16" />
                                     </StackPanel>
                                 </Border>
                                 <ControlTemplate.Triggers>

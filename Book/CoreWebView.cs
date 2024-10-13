@@ -2,6 +2,7 @@
 
 using Newtonsoft.Json;
 
+using ShareInvest.EventHandler;
 using ShareInvest.Models;
 
 using System.Diagnostics;
@@ -12,7 +13,7 @@ namespace ShareInvest;
 
 class CoreWebView
 {
-    public event EventHandler<LocItem>? Send;
+    public event EventHandler<EventArgs>? Send;
 
     internal async Task OnInitializedAsync(string? uriString = null)
     {
@@ -124,7 +125,7 @@ class CoreWebView
 
                 if ("main-do".Equals(name))
                 {
-                    var tag = await webView.ExecuteScriptAsync(@"var elements = document.querySelectorAll('.s_3_a_map a');var result = [];elements.forEach(function(element) {result.push(element.innerText);});JSON.stringify(result);");
+                    var tag = await webView.ExecuteScriptAsync(Properties.Resources.LOCATION);
 
                     if (string.IsNullOrEmpty(tag) || "\"[]\"".Equals(tag))
                     {
@@ -136,11 +137,33 @@ class CoreWebView
                     {
                         var strArr = text.Split('(');
 
-                        Send?.Invoke(this, new LocItem
+                        Send?.Invoke(this, new LocationArgs(new LocItem
                         {
                             LocName = strArr[0],
                             Count = Convert.ToInt32(strArr[1][..^1])
-                        });
+                        }));
+                    }
+                }
+
+                if ("www-foresttrip-go-kr".Equals(name))
+                {
+                    var region = await webView.ExecuteScriptAsync(Properties.Resources.REGION);
+                    var listHomeItems = await webView.ExecuteScriptAsync(Properties.Resources.HOUSE);
+
+                    if (string.IsNullOrEmpty(listHomeItems))
+                    {
+                        return;
+                    }
+                    region = region.Replace("\"", string.Empty);
+
+                    foreach (var item in JsonConvert.DeserializeObject<List<HouseItem>>(listHomeItems) ?? [])
+                    {
+                        Send?.Invoke(this, new HouseArgs(new HouseItem
+                        {
+                            Id = item.Id,
+                            Name = item.Name,
+                            Region = region
+                        }));
                     }
                 }
             }
