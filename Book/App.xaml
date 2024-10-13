@@ -27,6 +27,36 @@
 
         </Style>
 
+        <Style TargetType="Window" x:Key="region">
+
+            <Setter Property="WindowStyle"
+                    Value="None">
+            </Setter>
+
+            <Setter Property="Topmost" 
+                    Value="True">
+            </Setter>
+
+            <Setter Property="ShowInTaskbar"
+                    Value="False">
+            </Setter>
+
+            <Setter Property="ResizeMode"
+                    Value="NoResize">
+            </Setter>
+
+            <Setter Property="Height"
+                    Value="512">
+            </Setter>
+
+            <Setter Property="Width"
+                    Value="512">
+            </Setter>
+
+            <Setter Property="Background" Value="Transparent" />
+
+        </Style>
+
         <DataTemplate x:Key="LocItem">
 
             <StackPanel x:Name="LocPanel" Margin="8" Orientation="Horizontal">

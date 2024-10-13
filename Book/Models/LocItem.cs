@@ -2,12 +2,12 @@
 
 struct LocItem
 {
-    public string LocName
+    internal string LocName
     {
         get; set;
     }
 
-    public int Count
+    internal int Count
     {
         get; set;
     }

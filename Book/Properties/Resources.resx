@@ -142,4 +142,16 @@
   <data name="LOV" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\s_2_pre_locate_ov.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="LOCATION" xml:space="preserve">
+    <value>var elements = document.querySelectorAll('.s_3_a_map a');var result = [];elements.forEach(function(element) {result.push(element.innerText);});JSON.stringify(result);</value>
+  </data>
+  <data name="HOUSE" xml:space="preserve">
+    <value>var listItems = document.querySelectorAll('#srch_rcfcl li a');var result = Array.from(listItems).map(function(a) {var text = a.textContent.trim();var onclickValue = a.getAttribute('onclick');var match = onclickValue ? onclickValue.match(/fn_setRcfcl\('([^']*)'/) : null;var id = match ? match[1] : null;return { text: text, id: id };});result;</value>
+  </data>
+  <data name="REGION" xml:space="preserve">
+    <value>var region = document.getElementById('srch_region_txt');var reg = region ? region.textContent.trim() : null;reg;</value>
+  </data>
+  <data name="BINGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bingo (online-audio-converter.com).wav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

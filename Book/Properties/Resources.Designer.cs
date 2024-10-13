@@ -63,6 +63,16 @@ namespace ShareInvest.Properties {
         /// <summary>
         ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static byte[] BINGO {
+            get {
+                object obj = ResourceManager.GetObject("BINGO", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static byte[] DATE {
             get {
                 object obj = ResourceManager.GetObject("DATE", resourceCulture);
@@ -77,6 +87,15 @@ namespace ShareInvest.Properties {
             get {
                 object obj = ResourceManager.GetObject("HOME", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   var listItems = document.querySelectorAll(&apos;#srch_rcfcl li a&apos;);var result = Array.from(listItems).map(function(a) {var text = a.textContent.trim();var onclickValue = a.getAttribute(&apos;onclick&apos;);var match = onclickValue ? onclickValue.match(/fn_setRcfcl\(&apos;([^&apos;]*)&apos;/) : null;var id = match ? match[1] : null;return { text: text, id: id };});result;과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string HOUSE {
+            get {
+                return ResourceManager.GetString("HOUSE", resourceCulture);
             }
         }
         
@@ -96,6 +115,15 @@ namespace ShareInvest.Properties {
             get {
                 object obj = ResourceManager.GetObject("LOC", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   var elements = document.querySelectorAll(&apos;.s_3_a_map a&apos;);var result = [];elements.forEach(function(element) {result.push(element.innerText);});JSON.stringify(result);과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LOCATION {
+            get {
+                return ResourceManager.GetString("LOCATION", resourceCulture);
             }
         }
         
@@ -126,6 +154,15 @@ namespace ShareInvest.Properties {
             get {
                 object obj = ResourceManager.GetObject("PEOPLE", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   var region = document.getElementById(&apos;srch_region_txt&apos;);var reg = region ? region.textContent.trim() : null;reg;과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string REGION {
+            get {
+                return ResourceManager.GetString("REGION", resourceCulture);
             }
         }
         
