@@ -6,7 +6,7 @@ public class DateRangeViewModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    public DateTime? StartDate
+    public DateTime StartDate
     {
         set
         {
@@ -19,7 +19,7 @@ public class DateRangeViewModel : INotifyPropertyChanged
         get => startDate;
     }
 
-    public DateTime? EndDate
+    public DateTime EndDate
     {
         set
         {
@@ -48,12 +48,9 @@ public class DateRangeViewModel : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    void UpdateSelectedDateRange()
-    {
-        SelectedDateRange = StartDate.HasValue && EndDate.HasValue ? $"{StartDate:d} ∽ {EndDate:d}" : "날짜선택";
-    }
+    void UpdateSelectedDateRange() => SelectedDateRange = $"{StartDate:d} ∽ {EndDate:d}";
 
-    DateTime? startDate, endDate;
+    DateTime startDate, endDate;
 
     string? selectedDateRange;
 }

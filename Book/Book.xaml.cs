@@ -51,7 +51,7 @@ public partial class Book : Window
                     return;
             }
         };
-        _ = webView.OnInitializedAsync("https://www.foresttrip.go.kr/main.do");
+        _ = webView.OnInitializedAsync(Properties.Resources.DOMAIN);
     }
 
     void OnRegionHouseClick(object sender, RoutedEventArgs e)
@@ -95,11 +95,26 @@ public partial class Book : Window
     {
         if (DataContext is BookViewModel vm && vm.DateRange != null && vm.House != null)
         {
-            using (MemoryStream ms = new(Properties.Resources.BINGO))
+            var region = (loc.SelectedValue as ComboBoxItem)?.Content.ToString();
+            var house = string.Concat(vm.House.SelectedHouse?.Classification, vm.House.SelectedHouse?.Name);
+
+            DateTime startDate = vm.DateRange.StartDate, endDate = vm.DateRange.EndDate;
+
+            if (!string.IsNullOrEmpty(region) && houses.TryGetValue(region, out List<HouseItem>? list) && list.Any(e => e.Name.Equals(house)))
             {
-                using (SoundPlayer sp = new(ms))
+                using (MemoryStream ms = new(Properties.Resources.BINGO))
                 {
-                    sp.PlaySync();
+                    using (SoundPlayer sp = new(ms))
+                    {
+                        _ = Task.Run(async () =>
+                        {
+                            using (var rs = new ReservationService())
+                            {
+                                await rs.StartProcessAsync(Properties.Resources.DOMAIN, NumberOfPeople, region, house, startDate, endDate);
+                            }
+                        });
+                        sp.PlaySync();
+                    }
                 }
             }
         }

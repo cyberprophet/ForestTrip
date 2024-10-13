@@ -154,4 +154,10 @@
   <data name="BINGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bingo (online-audio-converter.com).wav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="USERAGENT" xml:space="preserve">
+    <value>user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</value>
+  </data>
+  <data name="DOMAIN" xml:space="preserve">
+    <value>https://www.foresttrip.go.kr/main.do</value>
+  </data>
 </root>
