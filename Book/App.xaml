@@ -3,9 +3,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ShareInvest"
              StartupUri="Book.xaml">
-    
+
     <Application.Resources>
 
+        <Style TargetType="Window"
+               x:Key="app">
+
+            <Setter Property="Height"
+                    Value="720">
+            </Setter>
+
+            <Setter Property="MinHeight"
+                    Value="720">
+            </Setter>
+
+            <Setter Property="Width"
+                    Value="1280">
+            </Setter>
+
+            <Setter Property="MinWidth"
+                    Value="1280">
+            </Setter>
+
+        </Style>
+
+        <Style TargetType="Window" x:Key="region">
+
+            <Setter Property="WindowStyle"
+                    Value="None">
+            </Setter>
+
+            <Setter Property="Topmost" 
+                    Value="True">
+            </Setter>
+
+            <Setter Property="ShowInTaskbar"
+                    Value="False">
+            </Setter>
+
+            <Setter Property="ResizeMode"
+                    Value="NoResize">
+            </Setter>
+
+            <Setter Property="Height"
+                    Value="512">
+            </Setter>
+
+            <Setter Property="Width"
+                    Value="512">
+            </Setter>
+
+            <Setter Property="Background" Value="Transparent" />
+
+        </Style>
+
+        <DataTemplate x:Key="LocItem">
+
+            <StackPanel x:Name="LocPanel" Margin="8" Orientation="Horizontal">
+                <Image x:Name="LocImg" Source="Resources/s_2_pre_locate.png" Width="24" Height="24" />
+                <TextBlock Text="{Binding}" Margin="8,0,0,0" FontWeight="Bold" FontSize="16" />
+            </StackPanel>
+
+            <DataTemplate.Triggers>
+                <Trigger SourceName="LocPanel" Property="IsMouseOver" Value="True">
+                    <Setter TargetName="LocImg" Property="Source" Value="Resources/s_2_pre_locate_ov.png" />
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </DataTemplate.Triggers>
+
+        </DataTemplate>
+
     </Application.Resources>
-    
+
 </Application>
