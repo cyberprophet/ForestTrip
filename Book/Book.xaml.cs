@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace ShareInvest;
 
@@ -70,6 +72,49 @@ public partial class Book : Window
                     };
                 }
             }
+        }
+    }
+
+    void OnClick(object sender, MouseButtonEventArgs e)
+    {
+        if (sender is DatePicker dp && dp.Template.FindName("sc", dp) is Popup p)
+        {
+            p.IsOpen = p.IsOpen is false;
+        }
+    }
+
+    void SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (sender is Calendar calendar)
+        {
+            DateTime startDate, endDate;
+
+            switch (e.AddedItems.Count)
+            {
+                case > 1:
+                    var items = e.AddedItems.Cast<DateTime>();
+
+                    var sortedItems = items.OrderBy(e => e);
+
+                    startDate = sortedItems.First();
+                    endDate = sortedItems.Last();
+                    break;
+
+                case 1:
+                    var reservationDate = e.AddedItems.Cast<DateTime>().First();
+
+                    startDate = reservationDate;
+                    endDate = reservationDate.AddDays(1);
+                    break;
+
+                default:
+                    return;
+            }
+            DataContext = new DateRangeViewModel
+            {
+                StartDate = startDate,
+                EndDate = endDate
+            };
         }
     }
 

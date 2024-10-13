@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        xmlns:local="clr-namespace:ShareInvest"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True}"
         WindowStartupLocation="CenterScreen"
@@ -55,8 +56,7 @@
 
                                         </ToggleButton>
 
-                                        <Popup x:Name="Popup"                                               
-                                               AllowsTransparency="True"                                               
+                                        <Popup AllowsTransparency="True"                                               
                                                Placement="Top"
                                                PopupAnimation="Slide"                                               
                                                Width="192"
@@ -89,6 +89,7 @@
                                         <TextBlock Text="{Binding SelectedHouse.Name, FallbackValue='전체'}" Margin="8,0,0,0" FontWeight="Bold" FontSize="16" />
                                     </StackPanel>
                                 </Border>
+
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Cursor" Value="Hand" />
@@ -98,28 +99,63 @@
                         </Button.Template>
                     </Button>
 
-                    <Button Width="256" Margin="8,4" Padding="4">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="16" BorderBrush="Transparent" BorderThickness="2" Background="WhiteSmoke">
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <Image Source="Resources/fs_icon_2.png" Width="24" Height="24" />
-                                        <TextBlock Text="날짜선택" Margin="8,0,0,0" FontWeight="Bold" FontSize="16" />
-                                    </StackPanel>
-                                </Border>
+                    <DatePicker Width="296" Margin="8,4" Padding="4" MouseLeftButtonDown="OnClick">
+                        <DatePicker.Template>
+                            <ControlTemplate TargetType="DatePicker">
+                                <Grid>
+                                    <Border CornerRadius="16" BorderBrush="Transparent" BorderThickness="2" Background="WhiteSmoke">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Image Source="Resources/fs_icon_2.png" Width="24" Height="24" />
+
+                                            <TextBlock Text="{Binding SelectedDateRange, FallbackValue='날짜선택'}"
+                                                       Margin="8,0,0,0"
+                                                       FontWeight="Bold"
+                                                       FontSize="16" />
+                                        </StackPanel>
+                                    </Border>
+
+                                    <Popup x:Name="sc"
+                                           Placement="Top"
+                                           StaysOpen="True"
+                                           AllowsTransparency="True">
+                                        <Border Background="White" BorderBrush="LightGray" BorderThickness="1">
+                                            <Calendar SelectionMode="SingleRange" SelectedDatesChanged="SelectedDatesChanged"/>
+                                        </Border>
+                                    </Popup>
+                                </Grid>
+
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Cursor" Value="Hand" />
                                     </Trigger>
                                 </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
 
-                    <Border CornerRadius="16" Width="296" BorderBrush="Transparent" BorderThickness="2" Background="WhiteSmoke" Margin="8,4">
+                                <ControlTemplate.Resources>
+                                    <Style TargetType="Popup">
+                                        <Setter Property="AllowsTransparency" Value="True"/>
+                                        <Setter Property="Focusable" Value="False"/>
+                                        <Setter Property="PopupAnimation" Value="Slide"/>
+                                    </Style>
+                                </ControlTemplate.Resources>
+                            </ControlTemplate>
+                        </DatePicker.Template>
+
+                        <DatePicker.CalendarStyle>
+                            <Style TargetType="Calendar">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="BorderBrush" Value="LightGray"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Style>
+                        </DatePicker.CalendarStyle>
+                    </DatePicker>
+
+                    <Border CornerRadius="16" Width="256" BorderBrush="Transparent" BorderThickness="2" Background="WhiteSmoke" Margin="8,4">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8,4">
                             <Image Source="Resources/fs_icon_3.png" Width="24" Height="24" />
+                            
                             <TextBlock Text="인원" FontWeight="Bold" FontSize="16" Margin="8,0" />
+                            
                             <Button Width="24" Height="24" Margin="4,0" Click="OnDecreaseClick">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
@@ -134,7 +170,9 @@
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
+                            
                             <TextBlock x:Name="np" Text="2" FontSize="16" Margin="8,0" />
+                            
                             <Button Width="24" Height="24" Margin="4,0" Click="OnIncreaseClick">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
